@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import {
   FRETBOARD_MAP,
@@ -12,8 +12,8 @@ import { getRandomInt } from '../../utils';
 import Button from '../Button/Button';
 
 function App() {
-  const [stringNo, setStringNo] = useState<number>(1);
-  const [fretNo, setFretNo] = useState<number>(1);
+  const [stringNo, setStringNo] = useState<number>();
+  const [fretNo, setFretNo] = useState<number>();
   const [answer, setAnswer] = useState<string>();
 
   function startQuiz() {
@@ -34,12 +34,18 @@ function App() {
   }
 
   return (
-    <main className="container mx-auto flex justify-center">
+    <main className="container mx-auto flex items-center flex-col">
       <div>
-        <Button onClick={startQuiz}>Start!</Button>
-        String: {stringNo} - Fret: {fretNo}
+        {stringNo && fretNo && (
+          <>
+            String: {stringNo} - Fret: {fretNo}
+          </>
+        )}
       </div>
       <AnswerSelection onAnswerSelected={(value) => checkAnswer(value)} />
+      <div>
+        <Button onClick={startQuiz}>Start!</Button>
+      </div>
     </main>
   );
 }
