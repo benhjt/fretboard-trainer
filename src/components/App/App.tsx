@@ -15,6 +15,7 @@ function App() {
   const [stringNo, setStringNo] = useState<number>();
   const [fretNo, setFretNo] = useState<number>();
   const [answer, setAnswer] = useState<string>();
+  const [answerResultMessage, setAnswerResultMessage] = useState<string>();
 
   function startQuiz() {
     const randomString = getRandomInt(MIN_STRING, MAX_STRING);
@@ -27,14 +28,22 @@ function App() {
 
   function checkAnswer(guess: string | undefined) {
     if (guess === answer) {
-      alert('correct!');
+      setAnswerResultMessage('✔ Correct!');
     } else {
-      alert('wrong!');
+      setAnswerResultMessage('❌ Wrong!');
     }
   }
 
   return (
     <main className="container mx-auto flex items-center flex-col">
+      <div
+        className={
+          'transition-opacity ' +
+          (answerResultMessage ? 'opacity-100' : 'opacity-0')
+        }
+      >
+        {answerResultMessage}
+      </div>
       <div>
         {stringNo && fretNo && (
           <>
