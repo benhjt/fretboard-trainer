@@ -5,6 +5,7 @@
   "repository": {
     "url": "git+https://github.com/benhjt/fretboard-trainer"
   },
+  "homepage": "https://benhjt.github.io/fretboard-trainer",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
