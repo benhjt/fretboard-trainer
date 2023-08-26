@@ -13,7 +13,7 @@ function AnswerSelection({ onAnswerSelected }: AnswerSelectionProps) {
         <div key={note}>
           <button
             type="button"
-            className="inline-flex items-center justify-center align-midddle min-w-[36px] px-2 py-1 text-neutral-200 bg-slate-500 hover:bg-slate-700 shadow-sm select-none cursor-pointer outline-none border-none rounded-md uppercase transition-colors"
+            className="inline-flex items-center justify-center align-midddle min-w-[36px] px-2 py-1 text-neutral-200 bg-slate-600 hover:bg-slate-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-600 shadow-sm select-none cursor-pointer outline-none border-none rounded-md transition-colors"
             onClick={() => onAnswerSelected(note)}
             value={note}
           >
