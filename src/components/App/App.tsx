@@ -13,11 +13,13 @@ import Button from '../Button/Button';
 
 function App() {
   const [stringNo, setStringNo] = useState<number>();
+  const [disabledAnswers, setDisabledAnswers] = useState<boolean>(true);
   const [fretNo, setFretNo] = useState<number>();
   const [answer, setAnswer] = useState<string>();
   const [answerResultMessage, setAnswerResultMessage] = useState<string>();
 
   function startQuiz() {
+    setDisabledAnswers(false);
     const randomString = getRandomInt(MIN_STRING, MAX_STRING);
     const stringIndex = randomString - 1;
     const randomFret = getRandomInt(MIN_FRET, MAX_FRET);
@@ -51,7 +53,10 @@ function App() {
           </>
         )}
       </div>
-      <AnswerSelection onAnswerSelected={(value) => checkAnswer(value)} />
+      <AnswerSelection
+        disabled={disabledAnswers}
+        onAnswerSelected={(value) => checkAnswer(value)}
+      />
       <div>
         <Button onClick={startQuiz}>Start!</Button>
       </div>
