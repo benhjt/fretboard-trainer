@@ -10,6 +10,8 @@ import {
 import AnswerSelection from '../AnswerSelection/AnswerSelection';
 import { getRandomInt } from '../../utils';
 import Button from '../Button/Button';
+import Question from '../Question';
+import Feedback from '../Feedback';
 
 function App() {
   const [stringNo, setStringNo] = useState<number>();
@@ -38,21 +40,8 @@ function App() {
 
   return (
     <main className="container mx-auto flex items-center flex-col">
-      <div
-        className={
-          'transition-opacity ' +
-          (answerResultMessage ? 'opacity-100' : 'opacity-0')
-        }
-      >
-        {answerResultMessage}
-      </div>
-      <div>
-        {stringNo && fretNo && (
-          <>
-            String: {stringNo} - Fret: {fretNo}
-          </>
-        )}
-      </div>
+      <Feedback answerResultMessage={answerResultMessage} />
+      <Question stringNo={stringNo} fretNo={fretNo} />
       <AnswerSelection
         disabled={disabledAnswers}
         onAnswerSelected={(value) => checkAnswer(value)}
