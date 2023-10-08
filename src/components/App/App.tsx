@@ -21,14 +21,19 @@ function App() {
   const [answer, setAnswer] = useState<string>();
   const [answerResultMessage, setAnswerResultMessage] = useState<string>();
 
+  function getQuestion() {
+    const randomStringNo = getRandomInt(MIN_STRING, MAX_STRING);
+    const stringIndex = randomStringNo - 1;
+    const randomFretNo = getRandomInt(MIN_FRET, MAX_FRET);
+    setFretNo(randomFretNo);
+    setStringNo(randomStringNo);
+    setAnswer(FRETBOARD_MAP[stringIndex][randomFretNo]);
+  }
+
   function startQuiz() {
     setDisabledAnswers(false);
-    const randomString = getRandomInt(MIN_STRING, MAX_STRING);
-    const stringIndex = randomString - 1;
-    const randomFret = getRandomInt(MIN_FRET, MAX_FRET);
-    setFretNo(randomFret);
-    setStringNo(randomString);
-    setAnswer(FRETBOARD_MAP[stringIndex][randomFret]);
+    setScore(0);
+    getQuestion();
   }
 
   function checkAnswer(guess: string | undefined) {
