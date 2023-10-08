@@ -14,6 +14,7 @@ import Question from '../Question';
 import Feedback from '../Feedback';
 
 function App() {
+  const [score, setScore] = useState<number>(0);
   const [stringNo, setStringNo] = useState<number>();
   const [disabledAnswers, setDisabledAnswers] = useState<boolean>(true);
   const [fretNo, setFretNo] = useState<number>();
@@ -33,8 +34,12 @@ function App() {
   function checkAnswer(guess: string | undefined) {
     if (guess === answer) {
       setAnswerResultMessage('✔ Correct!');
+      setScore(score + 1);
     } else {
       setAnswerResultMessage('❌ Wrong!');
+      if (score > 0) {
+        setScore(score - 1);
+      }
     }
   }
 
