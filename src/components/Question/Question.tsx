@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface QuestionProps {
   stringNo?: number;
   fretNo?: number;
