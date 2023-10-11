@@ -12,22 +12,23 @@ import { getRandomInt } from '../../utils';
 import Button from '../Button/Button';
 import Question from '../Question';
 import Feedback from '../Feedback';
+import { IQuestion } from '../../types';
 
 function App() {
   const [score, setScore] = useState<number>(0);
-  const [stringNo, setStringNo] = useState<number>();
   const [disabledAnswers, setDisabledAnswers] = useState<boolean>(true);
-  const [fretNo, setFretNo] = useState<number>();
-  const [answer, setAnswer] = useState<string>();
+  const [question, setQuestion] = useState<IQuestion>();
   const [answerResultMessage, setAnswerResultMessage] = useState<string>();
 
   function getQuestion() {
     const randomStringNo = getRandomInt(MIN_STRING, MAX_STRING);
     const stringIndex = randomStringNo - 1;
     const randomFretNo = getRandomInt(MIN_FRET, MAX_FRET);
-    setFretNo(randomFretNo);
-    setStringNo(randomStringNo);
-    setAnswer(FRETBOARD_MAP[stringIndex][randomFretNo]);
+    setQuestion({
+      fretNo: randomFretNo,
+      stringNo: randomStringNo,
+      answer: FRETBOARD_MAP[stringIndex][randomFretNo],
+    });
   }
 
   function startQuiz() {
@@ -37,7 +38,7 @@ function App() {
   }
 
   function checkAnswer(guess: string | undefined) {
-    if (guess === answer) {
+    if (guess === question?.answer) {
       setAnswerResultMessage('✔ Correct!');
       setScore(score + 1);
     } else {
@@ -51,9 +52,9 @@ function App() {
   return (
     <main className="container mx-auto flex items-center flex-col">
       <Feedback answerResultMessage={answerResultMessage} />
-      <Question stringNo={stringNo} fretNo={fretNo} />
+      {question && <Question question={question} />}
       <AnswerSelection
-        disabled={disabledAnswers}
+        disabled={disabledAnswers && !question}
         onAnswerSelected={(value) => checkAnswer(value)}
       />
       <div>

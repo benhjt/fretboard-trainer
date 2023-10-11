@@ -1,14 +1,15 @@
+import { IQuestion } from '../../types';
+
 interface QuestionProps {
-  stringNo?: number;
-  fretNo?: number;
+  question: IQuestion;
 }
 
-function Question({ stringNo, fretNo }: QuestionProps) {
+function Question({ question }: QuestionProps) {
   return (
     <div>
-      {stringNo && fretNo && (
+      {question.stringNo && question.fretNo && (
         <>
-          String: {stringNo} - Fret: {fretNo}
+          String: {question.stringNo} - Fret: {question.fretNo}
         </>
       )}
     </div>
