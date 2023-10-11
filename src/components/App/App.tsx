@@ -16,7 +16,7 @@ import { IQuestion } from '../../types';
 
 function App() {
   const [score, setScore] = useState<number>(0);
-  const [disabledAnswers, setDisabledAnswers] = useState<boolean>(true);
+  const [answersDisabled, setAnswersDisabled] = useState<boolean>(true);
   const [question, setQuestion] = useState<IQuestion>();
   const [answerResultMessage, setAnswerResultMessage] = useState<string>();
 
@@ -32,7 +32,7 @@ function App() {
   }
 
   function startQuiz() {
-    setDisabledAnswers(false);
+    setAnswersDisabled(false);
     setScore(0);
     getQuestion();
   }
@@ -54,7 +54,7 @@ function App() {
       <Feedback answerResultMessage={answerResultMessage} />
       {question && <Question question={question} />}
       <AnswerSelection
-        disabled={disabledAnswers && !question}
+        disabled={answersDisabled && !question}
         onAnswerSelected={(value) => checkAnswer(value)}
       />
       <div>
