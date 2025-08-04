@@ -9,21 +9,36 @@ export const useTheme = () => {
 
   useEffect(() => {
     const root = window.document.documentElement;
+
     const apply = (value: Theme) => {
-      root.classList.remove('light', 'dark');
+      // Remove dark class first
+      root.classList.remove('dark');
 
       if (value === 'system') {
         const prefersDark = window.matchMedia(
           '(prefers-color-scheme: dark)',
         ).matches;
-        root.classList.add(prefersDark ? 'dark' : 'light');
-      } else {
-        root.classList.add(value);
+        if (prefersDark) {
+          root.classList.add('dark');
+        }
+      } else if (value === 'dark') {
+        root.classList.add('dark');
       }
     };
 
     apply(theme);
     localStorage.setItem('theme', theme);
+
+    // Also listen for system theme changes
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleChange = () => {
+      if (theme === 'system') {
+        apply(theme);
+      }
+    };
+
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
   }, [theme]);
 
   return { theme, setTheme };

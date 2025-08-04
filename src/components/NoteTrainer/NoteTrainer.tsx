@@ -4,7 +4,6 @@ import { noteRanges } from '../../constants/noteRanges';
 import { useNotePlayer } from '../../hooks/useNotePlayer';
 import { createSampler } from '../../utils/audio';
 import { generateUniqueSequence } from '../../utils/notes';
-import ThemeToggle from '../ThemeToggle';
 
 export default function NoteTrainer() {
   const [selectedString, setSelectedString] = useState<string>('E2');
@@ -36,8 +35,6 @@ export default function NoteTrainer() {
     <div className="p-4 max-w-md mx-auto">
       <div className="bg-white text-black dark:bg-gray-900 dark:text-white p-6 shadow-xl rounded-2xl border border-gray-200">
         <h2 className="text-xl font-bold mb-4">Note Trainer</h2>
-        <ThemeToggle />
-
         <label className="block mb-2">
           Select String:
           <select
