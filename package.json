@@ -12,8 +12,11 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "lucide-react": "^0.536.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "tonal": "^6.4.2",
+    "tone": "^15.1.22"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
