@@ -22,7 +22,7 @@ export const createSampler = (onLoad: () => void): Tone.Sampler => {
       'F#5': 'Fs5.mp3',
     },
     release: 0.5,
-    baseUrl: '/sounds/',
+    baseUrl: `${import.meta.env.BASE_URL}sounds/`,
     onload: onLoad,
   }).toDestination();
 };

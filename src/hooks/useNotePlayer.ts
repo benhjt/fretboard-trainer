@@ -31,7 +31,9 @@ export function useNotePlayer(sampler: Tone.Sampler | null) {
 
     setCurrentIndex(index);
     const note = seq[index];
-    const speechUrl = `/speech/${getNoteName(note)}.mp3`;
+    const speechUrl = `${import.meta.env.BASE_URL}speech/${getNoteName(
+      note,
+    )}.mp3`;
 
     new Tone.Player({
       url: speechUrl,
