@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main # or 'master' if you're using that
+  workflow_dispatch: # Allows manual triggering
 
 permissions:
   contents: write # needed to push to gh-pages branch
