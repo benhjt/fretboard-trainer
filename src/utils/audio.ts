@@ -1,6 +1,9 @@
 import * as Tone from 'tone';
 
-export const createSampler = (onLoad: () => void): Tone.Sampler => {
+export const createSampler = (
+  onLoad: () => void,
+  onError: (error: Error) => void,
+): Tone.Sampler => {
   return new Tone.Sampler({
     urls: {
       A2: 'A2.mp3',
@@ -24,5 +27,13 @@ export const createSampler = (onLoad: () => void): Tone.Sampler => {
     release: 0.5,
     baseUrl: `${import.meta.env.BASE_URL}sounds/`,
     onload: onLoad,
+    onerror: (error) => {
+      console.error('Sampler loading error:', error);
+      onError(
+        new Error(
+          'Failed to load audio samples. Please check your internet connection and try again.',
+        ),
+      );
+    },
   }).toDestination();
 };
